@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Te Quiero 💙</title>
+  <title>Te Quiero Jazmín 💙</title>
   <style>
     html, body {
       margin: 0;
@@ -18,7 +18,7 @@
       top: 5%;
       width: 100%;
       text-align: center;
-      font-size: 2.5em;
+      font-size: 2.2em;
       color: #00bfff;
       text-shadow: 0 0 15px #00bfff;
       z-index: 10;
@@ -32,7 +32,7 @@
   </style>
 </head>
 <body>
-  <h1>Te Quiero 💙</h1>
+  <h1>Te Quiero Jazmín 💙</h1>
   <canvas id="canvas"></canvas>
 
   <script>
@@ -51,33 +51,36 @@
       return { x, y };
     }
 
+    // Aumentamos la densidad y definición
+    const scaleFactor = 15;
+
     for (let i = 0; i < heartPoints; i++) {
       const t = Math.PI * 2 * i / heartPoints;
       const pos = heartShape(t);
       particles.push({
-        x: pos.x * 20, // escala aumentada
-        y: -pos.y * 20,
-        z: Math.random() * 300 - 150
+        x: pos.x * scaleFactor,
+        y: -pos.y * scaleFactor,
+        z: Math.random() * 250 - 125
       });
     }
 
     function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
       ctx.fillRect(0, 0, width, height);
 
       const time = Date.now() * 0.001;
-      const angle = time * 0.5; // más lento en celular
+      const angle = time * 0.5;
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         const x = p.x * Math.cos(angle) - p.z * Math.sin(angle);
         const z = p.x * Math.sin(angle) + p.z * Math.cos(angle);
-        const scale = 500 / (500 + z);
+        const scale = 400 / (400 + z);
         const px = x * scale + width / 2;
         const py = p.y * scale + height / 2;
 
         ctx.beginPath();
-        ctx.arc(px, py, 2 * scale, 0, Math.PI * 2);
+        ctx.arc(px, py, 2.5 * scale, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(0,191,255,${scale})`;
         ctx.fill();
       }
@@ -94,3 +97,4 @@
   </script>
 </body>
 </html>
+
